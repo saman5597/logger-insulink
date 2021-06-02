@@ -30,6 +30,10 @@ logItem = new Schema({
 
 mongoose.model('insulink', logItem);
 
+app.get('/', async function (req, res) {
+    res.send('Insulink Logger')
+});
+
 app.post('/', async function (req, res) {
     try {
         var logItem = mongoose.model('insulink');
@@ -42,7 +46,7 @@ app.post('/', async function (req, res) {
             logtype: req.query["logtype"],
             msg: req.query["msg"]
         });
-
+        console.log(item)
         await item.save();
 
         console.log("Log saved on " + Date());
