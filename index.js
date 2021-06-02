@@ -46,7 +46,7 @@ app.post('/', async function (req, res) {
             logtype: req.query["logtype"],
             msg: req.query["msg"]
         });
-        console.log(item)
+
         await item.save();
 
         console.log("Log saved on " + Date());
