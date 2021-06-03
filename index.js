@@ -25,6 +25,8 @@ logItem = new Schema({
     },
     payload: Object,
     host: String,
+    ip: String,
+    version: String,
     msg: String
 }, schemaOptions);
 
@@ -39,9 +41,11 @@ app.post('/', async function (req, res) {
         var logItem = mongoose.model('insulink');
 
         const item = new logItem({
-            host: req.get('host'),
+            host: (req.body.host ? req.body.host : ""),
+            ip: (req.body.ip ? req.body.ip : ""),
             payload: (req.body.payload ? req.body.payload : {}),
             appName: req.query["appName"],
+            version: req.query["version"],
             generatedLogDate: req.query["date"],
             logtype: req.query["logtype"],
             msg: req.query["msg"]
